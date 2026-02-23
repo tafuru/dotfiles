@@ -1,0 +1,12 @@
+# fzf
+export FZF_DEFAULT_OPTS="--height -1 --layout reverse"
+command -v rg &>/dev/null && export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden"
+
+# Rust
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# macOS
+{{ if eq .chezmoi.os "darwin" -}}
+[ -S "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ] && \
+  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{- end }}

@@ -1,0 +1,53 @@
+# Shell options
+setopt AUTOCD
+setopt PROMPT_SUBST
+setopt CORRECT
+setopt NO_LIST_BEEP
+
+# Directory stack
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+# History
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+
+# Completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+autoload -Uz compinit && compinit
+
+# Aliases
+[ -f "$HOME/.zaliases" ] && . "$HOME/.zaliases"
+
+# Plugins
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
+command -v sheldon &>/dev/null && eval "$(sheldon source)"
+
+# Prompt
+autoload -U shrink_path
+if typeset -f prompt_context > /dev/null; then
+  prompt_context() { :; }
+fi
+if typeset -f prompt_dir > /dev/null; then
+  prompt_dir() {
+    prompt_segment blue $PRIMARY_FG " $(shrink_path -f) "
+  }
+fi
+
+# Tools
+command -v fzf &>/dev/null && source <(fzf --zsh)
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh --cmd cd)"
+if command -v zoxide &>/dev/null; then
+  function zoxide_interactive() {
+    cdi
+    zle reset-prompt
+  }
+  zle -N zoxide_interactive
+  bindkey '^Z' zoxide_interactive
+fi
+command -v mise &>/dev/null && eval "$(mise activate zsh)"

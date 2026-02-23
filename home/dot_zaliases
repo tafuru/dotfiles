@@ -1,0 +1,15 @@
+# eza
+if command -v eza &>/dev/null; then
+  alias l="eza"
+  alias la="eza -a"
+  alias ll="eza -lah"
+  alias ls="eza --color=auto"
+  alias tree="eza --tree"
+fi
+
+# bat
+command -v bat &>/dev/null && alias cat="bat --style=plain --paging=never"
+
+# Python
+command -v python3 &>/dev/null && alias python=python3
+command -v pip3 &>/dev/null && alias pip=pip3

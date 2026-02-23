@@ -1,0 +1,55 @@
+# dotfiles
+
+[![CI](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml)
+
+Dotfiles for macOS and Linux, managed with [chezmoi](https://www.chezmoi.io/).
+
+## Managed Files
+
+| File | Description |
+|---|---|
+| `~/.zshrc` | zsh main config |
+| `~/.zshenv` | Environment variables (OS-specific template) |
+| `~/.zaliases` | Alias definitions |
+| `~/.zprofile` | Login shell config (Homebrew, etc.) |
+| `~/.gitconfig` | Git config (user- and OS-specific template) |
+| `~/.config/sheldon/plugins.toml` | sheldon plugin config |
+
+## Installation
+
+```bash
+git clone https://github.com/tafuru/dotfiles.git
+cd dotfiles
+bash bootstrap.sh
+```
+
+On first run, you will be prompted for:
+
+- Git name / email
+- SSH signing key (optional — leave empty to skip)
+
+For non-interactive environments, use the `--yes` flag to auto-approve the chezmoi installation:
+
+```bash
+bash bootstrap.sh --yes
+```
+
+## Design Principles
+
+- Tools are skipped gracefully if not installed (`command -v` / `[ -f ]` / `[ -S ]` guards)
+- Works standalone — no dependency on [cmdtools](https://github.com/tafuru/cmdtools)
+- Supports both macOS and Linux
+- `.zshenv` and `.gitconfig` use chezmoi templates for OS- and user-specific configuration
+
+## Optional Setup
+
+### 1Password SSH Agent (macOS)
+
+SSH connections and Git commit signing can be managed via 1Password.
+
+1. Enable **Settings → Developer → Use the SSH agent** in 1Password
+2. Run `bootstrap.sh` — `SSH_AUTH_SOCK` will be configured automatically
+
+## License
+
+This repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.
