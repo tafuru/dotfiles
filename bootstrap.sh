@@ -27,5 +27,5 @@ if ! command -v chezmoi &>/dev/null; then
 fi
 
 echo "Applying dotfiles..."
-chezmoi apply --source "$SOURCE_DIR"
+chezmoi apply --source "$SOURCE_DIR" --destination "$HOME"
 echo "All done. Restart your shell to apply changes."

@@ -49,7 +49,7 @@ jobs:
       - name: Debug - list home directory
         run: |
           echo "HOME: $HOME"
-          ls -la "$HOME/" | grep '^\.' || true
+          find "$HOME" -maxdepth 1 -name '.*' | sort || true
           ls -la "$HOME/.config/" 2>/dev/null || echo ".config not found"
 
       - name: Verify files exist
