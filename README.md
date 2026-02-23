@@ -43,12 +43,14 @@ bash bootstrap.sh --yes
 
 ## Optional Setup
 
-### 1Password SSH Agent (macOS)
+### 1Password SSH Agent
 
 SSH connections and Git commit signing can be managed via 1Password.
 
 1. Enable **Settings → Developer → Use the SSH agent** in 1Password
 2. Run `bootstrap.sh` — `SSH_AUTH_SOCK` will be configured automatically
+
+> If 1Password is not installed, `SSH_AUTH_SOCK` is left unchanged — SSH agent forwarding from a remote machine continues to work as expected.
 
 ## License
 
