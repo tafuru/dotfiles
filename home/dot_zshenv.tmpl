@@ -1,8 +1,11 @@
+# shellcheck shell=bash
+
 # fzf
 export FZF_DEFAULT_OPTS="--height -1 --layout reverse"
 command -v rg &>/dev/null && export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden"
 
 # Rust
+# shellcheck source=/dev/null
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # macOS
