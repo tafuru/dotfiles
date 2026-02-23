@@ -41,15 +41,16 @@ jobs:
       - name: Create chezmoi config
         run: |
           mkdir -p "$HOME/.config/chezmoi"
-          cat > "$HOME/.config/chezmoi/chezmoi.toml" << 'EOF'
-          [data]
-            name = "Test User"
-            email = "test@example.com"
-            signingkey = ""
-          EOF
+          printf '[data]\n  name = "Test User"\n  email = "test@example.com"\n  signingkey = ""\n' > "$HOME/.config/chezmoi/chezmoi.toml"
 
       - name: Run bootstrap.sh
         run: bash bootstrap.sh --yes
+
+      - name: Debug - list home directory
+        run: |
+          echo "HOME: $HOME"
+          ls -la "$HOME/" | grep '^\.' || true
+          ls -la "$HOME/.config/" 2>/dev/null || echo ".config not found"
 
       - name: Verify files exist
         run: |
