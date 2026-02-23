@@ -1,3 +1,5 @@
+# shellcheck shell=zsh
+
 # Shell options
 setopt AUTOCD
 setopt PROMPT_SUBST
@@ -11,7 +13,7 @@ setopt PUSHD_IGNORE_DUPS
 # History
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
-SAVEHIST=10000000
+SAVEHIST=10000000 # shellcheck disable=SC2034
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
@@ -22,6 +24,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 autoload -Uz compinit && compinit
 
 # Aliases
+# shellcheck source=/dev/null
 [ -f "$HOME/.zaliases" ] && . "$HOME/.zaliases"
 
 # Plugins
@@ -35,11 +38,12 @@ if typeset -f prompt_context > /dev/null; then
 fi
 if typeset -f prompt_dir > /dev/null; then
   prompt_dir() {
-    prompt_segment blue $PRIMARY_FG " $(shrink_path -f) "
+    prompt_segment blue "$PRIMARY_FG" " $(shrink_path -f) "
   }
 fi
 
 # Tools
+# shellcheck disable=SC1090
 command -v fzf &>/dev/null && source <(fzf --zsh)
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh --cmd cd)"
 if command -v zoxide &>/dev/null; then
