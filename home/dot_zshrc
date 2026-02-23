@@ -1,4 +1,4 @@
-# shellcheck shell=zsh
+# shellcheck shell=bash
 
 # Shell options
 setopt AUTOCD
@@ -13,7 +13,8 @@ setopt PUSHD_IGNORE_DUPS
 # History
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
-SAVEHIST=10000000 # shellcheck disable=SC2034
+# shellcheck disable=SC2034
+SAVEHIST=10000000
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
