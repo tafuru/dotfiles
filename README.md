@@ -55,3 +55,7 @@ SSH connections and Git commit signing can be managed via 1Password.
 ## License
 
 This repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+> These are my personal dotfiles. Feel free to fork and adapt them to your own setup — just update the chezmoi templates (`*.tmpl`) with your own values.
