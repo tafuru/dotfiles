@@ -31,5 +31,5 @@ if ! command -v chezmoi &>/dev/null; then
 fi
 
 info "Applying dotfiles"
-chezmoi apply --source "$SOURCE_DIR" --destination "$HOME"
+chezmoi init --apply --source "$SOURCE_DIR"
 success "Dotfiles applied — restart your shell to apply changes"

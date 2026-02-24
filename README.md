@@ -17,6 +17,14 @@ Dotfiles for macOS and Linux, managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Installation
 
+If chezmoi is already installed, the recommended way is:
+
+```bash
+chezmoi init --apply github.com/tafuru/dotfiles
+```
+
+If chezmoi is not installed, use `bootstrap.sh` — it installs chezmoi automatically:
+
 ```bash
 git clone https://github.com/tafuru/dotfiles.git
 cd dotfiles
