@@ -49,7 +49,7 @@ bash bootstrap.sh --yes
 - Works standalone — no dependency on [cmdtools](https://github.com/tafuru/cmdtools)
 - Supports both macOS and Linux
 - `.zshenv` and `.gitconfig` use chezmoi templates for OS- and user-specific configuration
-- `~/.config/mise/config.toml` defines global runtimes (Rust, etc.) but **`mise install` is not run automatically** — run it manually after applying dotfiles
+- `~/.config/mise/config.toml` defines global runtimes (Rust, Node.js, Python); [dev-setup](https://github.com/tafuru/dev-setup) runs `mise install` automatically as the final step, or run it manually if applying dotfiles standalone
 
 ## Optional Setup
 
