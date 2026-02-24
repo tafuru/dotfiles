@@ -61,6 +61,10 @@ jobs:
           test -f "$HOME/.zaliases"
           test -f "$HOME/.zprofile"
           test -f "$HOME/.config/sheldon/plugins.toml"
+          test -f "$HOME/.config/mise/config.toml"
+
+      - name: Verify mise config content
+        run: grep -q "rust" "$HOME/.config/mise/config.toml"
 
       - name: Verify gitconfig content
         run: |
