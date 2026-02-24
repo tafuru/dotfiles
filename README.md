@@ -60,13 +60,13 @@ SSH connections and Git commit signing can be managed via 1Password.
 
 > If 1Password is not installed, `SSH_AUTH_SOCK` is left unchanged — SSH agent forwarding from a remote machine continues to work as expected.
 
-## License
-
-This repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
 ## Related
 
 For a full machine setup including CLI tools, see [dev-setup](https://github.com/tafuru/dev-setup).
+
+## License
+
+This repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
