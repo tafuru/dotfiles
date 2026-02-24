@@ -14,6 +14,7 @@ Dotfiles for macOS and Linux, managed with [chezmoi](https://www.chezmoi.io/).
 | `~/.zprofile` | Login shell config (Homebrew, etc.) |
 | `~/.gitconfig` | Git config (user- and OS-specific template) |
 | `~/.config/sheldon/plugins.toml` | sheldon plugin config |
+| `~/.config/mise/config.toml` | mise global tool config |
 
 ## Installation
 
@@ -48,6 +49,7 @@ bash bootstrap.sh --yes
 - Works standalone — no dependency on [cmdtools](https://github.com/tafuru/cmdtools)
 - Supports both macOS and Linux
 - `.zshenv` and `.gitconfig` use chezmoi templates for OS- and user-specific configuration
+- `~/.config/mise/config.toml` defines global runtimes (Rust, etc.) but **`mise install` is not run automatically** — run it manually after applying dotfiles
 
 ## Optional Setup
 
