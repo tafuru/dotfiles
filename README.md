@@ -64,6 +64,10 @@ SSH connections and Git commit signing can be managed via 1Password.
 
 This repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
+## Related
+
+For a full machine setup including CLI tools, see [dev-setup](https://github.com/tafuru/dev-setup).
+
 ---
 
 > These are my personal dotfiles. Feel free to fork and adapt them to your own setup — just update the chezmoi templates (`*.tmpl`) with your own values.
