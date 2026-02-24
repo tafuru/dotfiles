@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml)
 
-Dotfiles for macOS and Linux, managed with [chezmoi](https://www.chezmoi.io/).
+Dotfiles for macOS and Ubuntu/Debian, managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Managed Files
 
@@ -47,7 +47,7 @@ bash bootstrap.sh --yes
 
 - Tools are skipped gracefully if not installed (`command -v` / `[ -f ]` / `[ -S ]` guards)
 - Works standalone — no dependency on [cmdtools](https://github.com/tafuru/cmdtools)
-- Supports both macOS and Linux
+- Supports both macOS and Ubuntu/Debian
 - `.zshenv` and `.gitconfig` use chezmoi templates for OS- and user-specific configuration
 - `~/.config/mise/config.toml` defines global runtimes (Rust, Node.js, Python); [dev-setup](https://github.com/tafuru/dev-setup) runs `mise install` automatically as the final step, or run it manually if applying dotfiles standalone
 
