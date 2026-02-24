@@ -95,13 +95,13 @@ jobs:
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Create chezmoi config
-        run: |
-          mkdir -p "$HOME/.config/chezmoi"
-          printf '[data]\n  name = "Test User"\n  email = "test@example.com"\n  signingkey = ""\n' > "$HOME/.config/chezmoi/chezmoi.toml"
-
       - name: Run chezmoi init --apply
-        run: chezmoi init --apply github.com/tafuru/dotfiles
+        run: |
+          chezmoi init --apply \
+            --promptString "name=Test User" \
+            --promptString "email=test@example.com" \
+            --promptString "signingkey=" \
+            github.com/tafuru/dotfiles
 
       - name: Verify files exist
         run: |
