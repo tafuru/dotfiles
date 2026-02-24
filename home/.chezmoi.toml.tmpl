@@ -1,4 +1,20 @@
+{{- $name := "" -}}
+{{- $email := "" -}}
+{{- $signingkey := "" -}}
+{{- if env "CHEZMOI_GIT_NAME" -}}
+  {{- $name = env "CHEZMOI_GIT_NAME" -}}
+{{- else -}}
+  {{- $name = promptString "Git name" -}}
+{{- end -}}
+{{- if env "CHEZMOI_GIT_EMAIL" -}}
+  {{- $email = env "CHEZMOI_GIT_EMAIL" -}}
+{{- else -}}
+  {{- $email = promptString "Git email" -}}
+{{- end -}}
+{{- if not (env "CI") -}}
+  {{- $signingkey = promptString "SSH signing key (leave empty to skip)" -}}
+{{- end -}}
 [data]
-  name = {{ promptString "Git name" | quote }}
-  email = {{ promptString "Git email" | quote }}
-  signingkey = {{ promptString "SSH signing key (leave empty to skip)" | quote }}
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}
+  signingkey = {{ $signingkey | quote }}
