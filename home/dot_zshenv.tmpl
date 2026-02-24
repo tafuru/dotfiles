@@ -1,5 +1,8 @@
 # shellcheck shell=bash
 
+# User binaries
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
 # fzf
 export FZF_DEFAULT_OPTS="--height -1 --layout reverse"
 command -v rg &>/dev/null && export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden"
