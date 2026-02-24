@@ -64,7 +64,8 @@ SSH connections and Git commit signing can be managed via 1Password.
 
 ## Related
 
-For a full machine setup including CLI tools, see [dev-setup](https://github.com/tafuru/dev-setup).
+- [dev-setup](https://github.com/tafuru/dev-setup) — Full machine setup (entry point)
+- [devtools](https://github.com/tafuru/devtools) — GUI apps and fonts
 
 ## License
 
