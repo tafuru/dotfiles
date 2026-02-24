@@ -31,5 +31,9 @@ if ! command -v chezmoi &>/dev/null; then
 fi
 
 info "Applying dotfiles"
-chezmoi init --apply --source "$SOURCE_DIR"
+if [ -f "$HOME/.config/chezmoi/chezmoi.toml" ]; then
+  chezmoi apply --source "$SOURCE_DIR"
+else
+  chezmoi init --apply --source "$SOURCE_DIR"
+fi
 success "Dotfiles applied — restart your shell to apply changes"
