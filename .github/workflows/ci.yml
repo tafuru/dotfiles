@@ -27,28 +27,31 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        chezmoi: [pre-installed, not-installed]
+        install-method: [bootstrap-pre, bootstrap-none, chezmoi-init]
 
     steps:
       - uses: actions/checkout@v4
+        if: startsWith(matrix.install-method, 'bootstrap')
 
       - name: Install chezmoi
-        if: matrix.chezmoi == 'pre-installed'
+        if: matrix.install-method != 'bootstrap-none'
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Run bootstrap.sh
+        if: startsWith(matrix.install-method, 'bootstrap')
         env:
           CHEZMOI_GIT_NAME: "Test User"
           CHEZMOI_GIT_EMAIL: "test@example.com"
         run: bash bootstrap.sh --yes
 
-      - name: Debug - list home directory
-        run: |
-          echo "HOME: $HOME"
-          find "$HOME" -maxdepth 1 -name '.*' | sort || true
-          ls -la "$HOME/.config/" 2>/dev/null || echo ".config not found"
+      - name: Run chezmoi init --apply
+        if: matrix.install-method == 'chezmoi-init'
+        env:
+          CHEZMOI_GIT_NAME: "Test User"
+          CHEZMOI_GIT_EMAIL: "test@example.com"
+        run: chezmoi init --apply github.com/tafuru/dotfiles
 
       - name: Verify files exist
         run: |
@@ -80,39 +83,3 @@ jobs:
         run: |
           ! grep -q "\[gpg\]" "$HOME/.gitconfig"
 
-  test-chezmoi-init:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-
-    steps:
-      - name: Install chezmoi
-        run: |
-          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-
-      - name: Run chezmoi init --apply
-        env:
-          CHEZMOI_GIT_NAME: "Test User"
-          CHEZMOI_GIT_EMAIL: "test@example.com"
-        run: chezmoi init --apply github.com/tafuru/dotfiles
-
-      - name: Verify files exist
-        run: |
-          test -f "$HOME/.zshrc"
-          test -f "$HOME/.zshenv"
-          test -f "$HOME/.gitconfig"
-          test -f "$HOME/.zaliases"
-          test -f "$HOME/.zprofile"
-          test -f "$HOME/.config/sheldon/plugins.toml"
-
-      - name: Verify gitconfig content
-        run: |
-          grep -q "Test User" "$HOME/.gitconfig"
-          grep -q "test@example.com" "$HOME/.gitconfig"
-
-      - name: Verify signing config is absent when signingkey is empty
-        run: |
-          ! grep -q "\[gpg\]" "$HOME/.gitconfig"
