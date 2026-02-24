@@ -1,5 +1,16 @@
 [ghq]
 	root = {{ .chezmoi.homeDir }}/repos
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+[diff]
+	colorMoved = default
+[merge]
+	conflictstyle = zdiff3
 [user]
 	email = {{ .email }}
 	name = {{ .name }}
