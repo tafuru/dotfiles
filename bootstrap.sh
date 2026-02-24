@@ -5,6 +5,11 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 SOURCE_DIR="$DOTFILES_DIR/home"
 YES=false
 
+info()    { echo "[dotfiles] $*"; }
+success() { echo "[dotfiles] ✓ $*"; }
+warn()    { echo "[dotfiles] ! $*" >&2; }
+fatal()   { echo "[dotfiles] ✗ $*" >&2; exit 1; }
+
 for arg in "$@"; do
   case "$arg" in
     -y|--yes) YES=true ;;
@@ -12,20 +17,19 @@ for arg in "$@"; do
 done
 
 if ! command -v chezmoi &>/dev/null; then
-  echo "chezmoi is not found on this system."
+  info "chezmoi not found"
   if [ "$YES" = false ]; then
-    read -rp "  Install chezmoi to \$HOME/.local/bin? [y/N]: " answer
+    read -rp "[dotfiles] Install chezmoi to \$HOME/.local/bin? [y/N]: " answer
     if [[ ! "$answer" =~ ^[Yy]$ ]]; then
-      echo "Installation cancelled. chezmoi is required to apply dotfiles."
-      exit 1
+      fatal "Installation cancelled — chezmoi is required to apply dotfiles"
     fi
   fi
-  echo "  Installing chezmoi..."
+  info "Installing chezmoi"
   sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
   export PATH="$HOME/.local/bin:$PATH"
-  echo "  chezmoi installed successfully."
+  success "chezmoi installed"
 fi
 
-echo "Applying dotfiles..."
+info "Applying dotfiles"
 chezmoi apply --source "$SOURCE_DIR" --destination "$HOME"
-echo "All done. Restart your shell to apply changes."
+success "Dotfiles applied — restart your shell to apply changes"
