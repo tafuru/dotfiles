@@ -4,15 +4,15 @@
 {{- if env "CHEZMOI_GIT_NAME" -}}
   {{- $name = env "CHEZMOI_GIT_NAME" -}}
 {{- else -}}
-  {{- $name = promptString "Git name" -}}
+  {{- $name = promptString "Git user.name (e.g. Taro Yamada)" -}}
 {{- end -}}
 {{- if env "CHEZMOI_GIT_EMAIL" -}}
   {{- $email = env "CHEZMOI_GIT_EMAIL" -}}
 {{- else -}}
-  {{- $email = promptString "Git email" -}}
+  {{- $email = promptString "Git user.email (e.g. taro@example.com)" -}}
 {{- end -}}
 {{- if not (env "CI") -}}
-  {{- $signingkey = promptString "SSH signing key (leave empty to skip)" -}}
+  {{- $signingkey = promptString "1Password SSH signing key fingerprint (leave empty to skip)" -}}
 {{- end -}}
 [data]
   name = {{ $name | quote }}
