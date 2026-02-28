@@ -4,7 +4,7 @@
 {{- if env "CHEZMOI_GIT_NAME" -}}
   {{- $name = env "CHEZMOI_GIT_NAME" -}}
 {{- else -}}
-  {{- $name = promptString "Git user.name (e.g. Taro Yamada)" -}}
+  {{- $name = promptString "Git user.name (e.g. John Doe)" -}}
 {{- end -}}
 {{- if env "CHEZMOI_GIT_EMAIL" -}}
   {{- $email = env "CHEZMOI_GIT_EMAIL" -}}
