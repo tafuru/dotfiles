@@ -30,7 +30,6 @@ autoload -Uz compinit && compinit
 
 # Plugins
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
-export ZSH_COMMAND_TIME_MIN_SECONDS=180
 command -v sheldon &>/dev/null && eval "$(sheldon source)"
 
 # Prompt

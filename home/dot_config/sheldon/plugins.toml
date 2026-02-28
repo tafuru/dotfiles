@@ -18,10 +18,6 @@ apply = ["fpath"]
 github = "MichaelAquilina/zsh-you-should-use"
 apply = ["defer"]
 
-[plugins.zsh-command-time]
-github = "popstas/zsh-command-time"
-apply = ["defer"]
-
 [plugins.fast-syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
 
