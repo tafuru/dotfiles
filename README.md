@@ -14,6 +14,9 @@ Dotfiles for macOS and Ubuntu/Debian, managed with [chezmoi](https://www.chezmoi
 | `~/.zprofile` | Login shell config (Homebrew, etc.) |
 | `~/.gitconfig` | Git config (user- and OS-specific template) |
 | `~/.config/sheldon/plugins.toml` | sheldon plugin config |
+| `~/.config/starship.toml` | Starship prompt config (Gruvbox Rainbow) |
+| `~/.config/ghostty/config` | Ghostty terminal config |
+| `~/.config/zellij/config.kdl` | Zellij terminal multiplexer config |
 | `~/.config/mise/config.toml` | mise global tool config |
 
 ## Installation

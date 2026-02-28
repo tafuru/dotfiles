@@ -62,6 +62,9 @@ jobs:
           test -f "$HOME/.zprofile"
           test -f "$HOME/.config/sheldon/plugins.toml"
           test -f "$HOME/.config/mise/config.toml"
+          test -f "$HOME/.config/starship.toml"
+          test -f "$HOME/.config/ghostty/config"
+          test -f "$HOME/.config/zellij/config.kdl"
 
       - name: Verify mise config content
         run: grep -q "rust" "$HOME/.config/mise/config.toml"
