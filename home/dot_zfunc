@@ -1,5 +1,16 @@
 # shellcheck shell=bash
 
+# Newline before prompt (skip on first login)
+_PS1_NEWLINE_LOGIN=true
+function _add_newline() {
+  if [[ -z $_PS1_NEWLINE_LOGIN ]]; then
+    printf '\n'
+  else
+    unset _PS1_NEWLINE_LOGIN
+  fi
+}
+precmd_functions+=(_add_newline)
+
 # zoxide interactive (Ctrl+Z)
 if command -v zoxide &>/dev/null; then
   function zoxide_interactive() {
