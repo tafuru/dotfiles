@@ -9,13 +9,6 @@ github = "romkatv/zsh-defer"
 github = "zsh-users/zsh-autosuggestions"
 apply = ["defer"]
 
-[plugins.agnoster]
-github = "agnoster/agnoster-zsh-theme"
-
-[plugins.shrink-path]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins/shrink-path"
-
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
 dir = "src"

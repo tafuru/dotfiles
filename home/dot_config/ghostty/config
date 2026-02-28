@@ -1,0 +1,20 @@
+# Theme
+theme = Gruvbox Dark
+
+# Window
+window-height = 36
+window-width = 170
+window-padding-x = 10
+window-padding-y = 5
+
+# Font
+font-family = HackGen Console NF
+font-feature = -dlig
+font-size = 13
+adjust-cell-height = 8
+
+# macOS
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = tabs
+macos-icon = custom
+macos-option-as-alt = true

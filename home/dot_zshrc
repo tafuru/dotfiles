@@ -34,15 +34,7 @@ export ZSH_COMMAND_TIME_MIN_SECONDS=180
 command -v sheldon &>/dev/null && eval "$(sheldon source)"
 
 # Prompt
-autoload -U shrink_path
-if typeset -f prompt_context > /dev/null; then
-  prompt_context() { :; }
-fi
-if typeset -f prompt_dir > /dev/null; then
-  prompt_dir() {
-    prompt_segment blue "$PRIMARY_FG" " $(shrink_path -f) "
-  }
-fi
+command -v starship &>/dev/null && eval "$(starship init zsh)"
 
 # Tools
 # shellcheck disable=SC1090
