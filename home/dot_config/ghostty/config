@@ -18,3 +18,6 @@ macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = tabs
 macos-icon = custom
 macos-option-as-alt = true
+
+# Shell
+command = zellij attach --create main
