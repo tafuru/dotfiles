@@ -50,6 +50,7 @@ fi
 if command -v ghq &>/dev/null && command -v fzf &>/dev/null; then
   function ghq_fzf() {
     local repo
+    # shellcheck disable=SC2016
     repo=$(ghq list | fzf --prompt='ghq> ' --preview='ls $(ghq root)/{}') || return
     cd "$(ghq root)/$repo" || return
     zle reset-prompt
