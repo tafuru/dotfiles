@@ -18,6 +18,7 @@ jobs:
         run: |
           shellcheck bootstrap.sh
           shellcheck home/dot_zshrc
+          shellcheck home/dot_zfunc
           shellcheck home/dot_zprofile
           shellcheck home/dot_zaliases
 
@@ -60,6 +61,7 @@ jobs:
           test -f "$HOME/.gitconfig"
           test -f "$HOME/.zaliases"
           test -f "$HOME/.zprofile"
+          test -f "$HOME/.zfunc"
           test -f "$HOME/.config/sheldon/plugins.toml"
           test -f "$HOME/.config/mise/config.toml"
           test -f "$HOME/.config/starship.toml"
@@ -83,6 +85,7 @@ jobs:
         run: |
           shellcheck "$HOME/.zshrc"
           shellcheck "$HOME/.zshenv"
+          shellcheck "$HOME/.zfunc"
           shellcheck "$HOME/.zprofile"
           shellcheck "$HOME/.zaliases"
 

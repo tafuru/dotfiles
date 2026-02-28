@@ -1,0 +1,24 @@
+# shellcheck shell=bash
+
+# zoxide interactive (Ctrl+Z)
+if command -v zoxide &>/dev/null; then
+  function zoxide_interactive() {
+    cdi
+    zle reset-prompt
+  }
+  zle -N zoxide_interactive
+  bindkey '^Z' zoxide_interactive
+fi
+
+# ghq + fzf repo selector (Ctrl+])
+if command -v ghq &>/dev/null && command -v fzf &>/dev/null; then
+  function ghq_fzf() {
+    local repo
+    # shellcheck disable=SC2016
+    repo=$(ghq list | fzf --prompt='ghq> ' --preview='ls -A $(ghq root)/{}') || return
+    cd "$(ghq root)/$repo" || return
+    zle reset-prompt
+  }
+  zle -N ghq_fzf
+  bindkey '^]' ghq_fzf
+fi
