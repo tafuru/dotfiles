@@ -46,9 +46,6 @@ command -v mise &>/dev/null && eval "$(mise activate zsh)"
 source "$HOME/.zfunc"
 
 # Auto-start zellij
-if [[ -z "$ZELLIJ" ]] \
-  && [[ -z "$SSH_CONNECTION" ]] \
-  && [[ -z "$SSH_TTY" ]] \
-  && [[ "${ZELLIJ_AUTOSTART:-1}" != "0" ]]; then
-  exec zellij attach --create "$(hostname)"
-fi
+export ZELLIJ_AUTO_ATTACH=true
+export ZELLIJ_AUTO_EXIT=true
+eval "$(zellij setup --generate-auto-start zsh)"
