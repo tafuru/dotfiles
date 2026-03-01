@@ -17,6 +17,10 @@ adjust-cell-height = 8
 # Clipboard
 copy-on-select = false
 
+# Keybinds
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
 # macOS
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = tabs
