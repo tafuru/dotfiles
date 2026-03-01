@@ -14,3 +14,9 @@ command -v bat &>/dev/null && alias cat="bat --style=plain --paging=never"
 # Python
 command -v python3 &>/dev/null && alias python=python3
 command -v pip3 &>/dev/null && alias pip=pip3
+
+# neovim
+if command -v nvim &>/dev/null; then
+  alias vi="nvim"
+  alias vim="nvim"
+fi
