@@ -1,13 +1,5 @@
 # shellcheck shell=bash
 
-# Auto-start zellij
-if [[ -z "$ZELLIJ" ]] \
-  && [[ -z "$SSH_CONNECTION" ]] \
-  && [[ -z "$SSH_TTY" ]] \
-  && [[ "${ZELLIJ_AUTOSTART:-1}" != "0" ]]; then
-  exec zellij attach --create "$(hostname)"
-fi
-
 # Shell options
 setopt AUTOCD
 setopt PROMPT_SUBST
@@ -52,3 +44,11 @@ command -v mise &>/dev/null && eval "$(mise activate zsh)"
 # Functions
 # shellcheck disable=SC1091
 source "$HOME/.zfunc"
+
+# Auto-start zellij
+if [[ -z "$ZELLIJ" ]] \
+  && [[ -z "$SSH_CONNECTION" ]] \
+  && [[ -z "$SSH_TTY" ]] \
+  && [[ "${ZELLIJ_AUTOSTART:-1}" != "0" ]]; then
+  exec zellij attach --create "$(hostname)"
+fi
