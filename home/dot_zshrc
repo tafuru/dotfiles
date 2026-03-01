@@ -1,5 +1,13 @@
 # shellcheck shell=bash
 
+# Auto-start zellij
+if [[ -z "$ZELLIJ" ]] \
+  && [[ -z "$SSH_CONNECTION" ]] \
+  && [[ -z "$SSH_TTY" ]] \
+  && [[ "${ZELLIJ_AUTOSTART:-1}" != "0" ]]; then
+  exec zellij attach --create "$(hostname)"
+fi
+
 # Shell options
 setopt AUTOCD
 setopt PROMPT_SUBST
