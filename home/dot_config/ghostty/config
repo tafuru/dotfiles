@@ -13,6 +13,9 @@ font-feature = -dlig
 font-size = 13
 adjust-cell-height = 8
 
+# Clipboard
+copy-on-select = false
+
 # macOS
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = tabs
