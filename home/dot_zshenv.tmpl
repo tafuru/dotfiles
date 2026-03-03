@@ -18,4 +18,10 @@ command -v rg &>/dev/null && export FZF_DEFAULT_COMMAND="rg --files --no-ignore-
 {{ else -}}
 [ -S "$HOME/.1password/agent.sock" ] && \
   export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+# Default editor
+: "${EDITOR:=nvim}"
+export EDITOR
+: "${VISUAL:=$EDITOR}"
+export VISUAL
+
 {{- end }}
