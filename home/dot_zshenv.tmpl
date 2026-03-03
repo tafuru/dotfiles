@@ -21,6 +21,8 @@ command -v rg &>/dev/null && export FZF_DEFAULT_COMMAND="rg --files --no-ignore-
 {{- end }}
 
 # Default editor
-export EDITOR="${EDITOR:-nvim}"
-export VISUAL="${VISUAL:-$EDITOR}"
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+fi
 
