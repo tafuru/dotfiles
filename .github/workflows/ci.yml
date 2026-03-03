@@ -67,6 +67,7 @@ jobs:
           test -f "$HOME/.config/starship.toml"
           test -f "$HOME/.config/ghostty/config"
           test -f "$HOME/.config/zellij/config.kdl"
+          test -f "$HOME/.config/nvim/init.lua"
 
       - name: Verify mise config content
         run: grep -q "rust" "$HOME/.config/mise/config.toml"
