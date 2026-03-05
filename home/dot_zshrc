@@ -6,6 +6,9 @@ setopt PROMPT_SUBST
 setopt CORRECT
 setopt NO_LIST_BEEP
 
+# Key bindings
+bindkey -e
+
 # Directory stack
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
