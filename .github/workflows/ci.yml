@@ -68,6 +68,10 @@ jobs:
           test -f "$HOME/.config/ghostty/config"
           test -f "$HOME/.config/zellij/config.kdl"
           test -f "$HOME/.config/nvim/init.lua"
+          test -f "$HOME/.config/nvim/lua/config/options.lua"
+          test -f "$HOME/.config/nvim/lua/config/keymaps.lua"
+          test -f "$HOME/.config/nvim/lua/config/lazy.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/colorscheme.lua"
 
       - name: Verify mise config content
         run: grep -q "rust" "$HOME/.config/mise/config.toml"
