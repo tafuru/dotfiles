@@ -55,7 +55,37 @@ bash bootstrap.sh --yes
 - `.zshenv` and `.gitconfig` use chezmoi templates for OS- and user-specific configuration
 - `~/.config/mise/config.toml` defines global runtimes (Rust, Node.js, Python); [dev-setup](https://github.com/tafuru/dev-setup) runs `mise install` automatically as the final step, or run it manually if applying dotfiles standalone
 
-## Optional Setup
+## Neovim
+
+Config is modular under `~/.config/nvim/`:
+
+```
+nvim/
+├── init.lua              # entrypoint
+└── lua/
+    ├── config/
+    │   ├── options.lua   # editor options
+    │   ├── keymaps.lua   # key mappings
+    │   └── lazy.lua      # lazy.nvim bootstrap
+    └── plugins/          # one file per plugin
+```
+
+Plugins (managed by [lazy.nvim](https://github.com/folke/lazy.nvim)):
+
+| Plugin | Purpose |
+|---|---|
+| ellisonleao/gruvbox.nvim | Gruvbox Dark colorscheme |
+| folke/which-key.nvim | Keymap hints popup |
+| folke/todo-comments.nvim | Highlight TODO/FIXME comments |
+| nvim-telescope/telescope.nvim | Fuzzy finder (`<leader>ff`, `<leader>fg`) |
+| nvim-treesitter/nvim-treesitter | Syntax highlight & text objects |
+| neovim/nvim-lspconfig + mason | LSP client + server auto-install |
+| Saghen/blink.cmp | Completion engine |
+| stevearc/conform.nvim | Formatter integration |
+| lewis6991/gitsigns.nvim | Git diff in signcolumn |
+| echasnovski/mini.nvim | pairs / surround / comment |
+
+
 
 ### 1Password SSH Agent
 
