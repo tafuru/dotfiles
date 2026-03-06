@@ -28,6 +28,9 @@ opt.scrolloff = 8      -- keep 8 lines above/below cursor
 opt.splitbelow = true
 opt.splitright = true
 
+-- Confirmation
+opt.confirm = true     -- confirm when closing modified buffers
+
 -- Files
 opt.undofile = true    -- persistent undo
 opt.swapfile = false
