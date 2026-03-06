@@ -34,5 +34,12 @@ opt.swapfile = false
 opt.backup = false
 opt.updatetime = 250
 
+-- Yank highlight
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 200 })
+  end,
+})
+
 -- Clipboard
 opt.clipboard = "unnamedplus" -- sync with system clipboard
