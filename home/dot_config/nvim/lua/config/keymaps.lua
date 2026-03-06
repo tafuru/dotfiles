@@ -26,3 +26,8 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Clear search highlight
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
+-- Telescope finders
+local telescope = require('telescope.builtin')
+map('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
+map('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
+
