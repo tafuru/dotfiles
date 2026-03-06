@@ -1,8 +1,9 @@
 return {
-  "phaazon/blink.vim",
-  -- lightweight completion, basic setup can be extended by user
-  config = function()
-    -- use omnifunc fallback, enable basic mappings if needed
-    vim.o.completeopt = "menuone,noselect"
-  end,
+  'Saghen/blink.cmp',
+  version = '*',
+  opts = {
+    keymap = { preset = 'default' },
+    appearance = { use_nvim_highlights = true },
+    sources = { default = { 'lsp', 'path', 'buffer' } },
+  },
 }
