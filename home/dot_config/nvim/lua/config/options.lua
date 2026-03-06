@@ -41,5 +41,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Clipboard
-opt.clipboard = "unnamedplus" -- sync with system clipboard
+-- Clipboard (set after startup for performance)
+vim.schedule(function() vim.o.clipboard = 'unnamedplus' end) -- sync with system clipboard
