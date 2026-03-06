@@ -9,7 +9,10 @@ return {
   { 'neovim/nvim-lspconfig',
     dependencies = { 'williamboman/mason-lspconfig.nvim' },
     config = function()
-      vim.lsp.enable({ 'pyright', 'ts_ls', 'gopls' })
+      -- vim.lsp.enable is available from nvim 0.11+
+      if vim.fn.has('nvim-0.11') == 1 then
+        vim.lsp.enable({ 'pyright', 'ts_ls', 'gopls' })
+      end
     end,
   },
 }
