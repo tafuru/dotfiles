@@ -3,6 +3,7 @@ local opt = vim.opt
 -- Line numbers
 opt.number = true
 opt.relativenumber = true
+opt.mouse = "a"
 
 -- Indentation
 opt.expandtab = true   -- tabs → spaces
@@ -16,13 +17,20 @@ opt.ignorecase = true
 opt.smartcase = true   -- case-sensitive when query contains uppercase
 opt.hlsearch = false
 opt.incsearch = true
+opt.timeoutlen = 300
 
 -- Appearance
 opt.termguicolors = true
 opt.cursorline = true
 opt.signcolumn = "yes" -- always show, prevents layout shifts
 opt.wrap = false
-opt.scrolloff = 8      -- keep 8 lines above/below cursor
+opt.scrolloff = 10      -- keep 10 lines above/below cursor
+opt.showmode = false -- rely on statusline
+-- Show invisible characters
+opt.list = true
+opt.listchars = "tab:»·,trail:·,extends:…,precedes:…,nbsp:␣"
+-- Live replace preview
+opt.inccommand = "split"
 
 -- Splits
 opt.splitbelow = true
