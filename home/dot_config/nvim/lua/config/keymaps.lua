@@ -21,5 +21,8 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 -- Diagnostics: open quickfix with diagnostics
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
+-- Terminal: <Esc><Esc> to exit terminal mode
+map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
 -- Clear search highlight
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
