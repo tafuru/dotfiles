@@ -9,12 +9,7 @@ return {
   { 'neovim/nvim-lspconfig',
     dependencies = { 'williamboman/mason-lspconfig.nvim' },
     config = function()
-      local lspconfig = require('lspconfig')
-      local on_attach = function() end
-      local servers = { 'pyright', 'ts_ls', 'gopls' }
-      for _, srv in ipairs(servers) do
-        pcall(lspconfig[srv].setup, { on_attach = on_attach })
-      end
+      vim.lsp.enable({ 'pyright', 'ts_ls', 'gopls' })
     end,
   },
 }

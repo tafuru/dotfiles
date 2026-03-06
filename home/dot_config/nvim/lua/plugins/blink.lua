@@ -3,7 +3,7 @@ return {
   version = '*',
   opts = {
     keymap = { preset = 'default' },
-    appearance = { use_nvim_highlights = true },
+    appearance = { nerd_font_variant = 'mono' },
     sources = { default = { 'lsp', 'path', 'buffer' } },
   },
 }
