@@ -72,6 +72,15 @@ jobs:
           test -f "$HOME/.config/nvim/lua/config/keymaps.lua"
           test -f "$HOME/.config/nvim/lua/config/lazy.lua"
           test -f "$HOME/.config/nvim/lua/plugins/colorscheme.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/blink.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/conform.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/gitsigns.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/lsp.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/mini.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/telescope.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/todo.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/treesitter.lua"
+          test -f "$HOME/.config/nvim/lua/plugins/whichkey.lua"
 
       - name: Verify mise config content
         run: grep -q "rust" "$HOME/.config/mise/config.toml"
