@@ -80,6 +80,7 @@ Plugins (managed by [lazy.nvim](https://github.com/folke/lazy.nvim)):
 | folke/which-key.nvim | Keymap hints popup |
 | folke/todo-comments.nvim | Highlight TODO/FIXME comments |
 | nvim-telescope/telescope.nvim | Fuzzy finder (`<leader>ff`, `<leader>fg`) |
+| nvim-neo-tree/neo-tree.nvim | File explorer sidebar (`<leader>e` to toggle) |
 | nvim-treesitter/nvim-treesitter | Syntax highlight & text objects |
 | neovim/nvim-lspconfig + mason | LSP client + server auto-install |
 | Saghen/blink.cmp | Completion engine |
