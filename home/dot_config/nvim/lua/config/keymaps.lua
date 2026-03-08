@@ -38,3 +38,8 @@ map('n', '<leader>ff', function()
 end, { desc = 'Telescope find files (include dotfiles, ignore .git)' })
 map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, { desc = 'Telescope live grep' })
 
+-- Neo-tree: toggle file explorer
+map('n', '<leader>e', function()
+  require('neo-tree.command').execute({ toggle = true })
+end, { desc = 'Toggle Neo-tree' })
+

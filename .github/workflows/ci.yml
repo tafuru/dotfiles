@@ -82,19 +82,16 @@ jobs:
           shellcheck "$HOME/.zprofile"
           shellcheck "$HOME/.zaliases"
 
-      - name: Install Neovim (Linux)
-        if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y neovim
-
-      - name: Install Neovim (macOS)
-        if: runner.os == 'macOS'
-        run: brew update && brew install neovim
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
 
       - name: Neovim headless startup check
         run: |
-          set -e
           nvim --version
-          nvim --headless -c 'lua local ok, lazy = pcall(require, "lazy"); if ok then lazy.sync() end' -c 'qa'
+          nvim --headless -c 'qa'
 
       - name: Verify signing config is absent when signingkey is empty
         run: |
