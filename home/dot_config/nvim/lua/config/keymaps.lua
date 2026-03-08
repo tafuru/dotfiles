@@ -28,6 +28,13 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Telescope finders (lazy-loaded on call)
-map('n', '<leader>ff', function() require('telescope.builtin').find_files() end, { desc = 'Telescope find files' })
+map('n', '<leader>ff', function()
+  local fb = require('telescope.builtin')
+  if vim.fn.executable('fd') == 1 then
+    fb.find_files({ find_command = {'fd', '--type', 'f', '--hidden', '--follow', '--exclude', '.git'}, prompt_title = 'Files (incl. dotfiles, excl .git)' })
+  else
+    fb.find_files({ hidden = true, file_ignore_patterns = {'.git'}, prompt_title = 'Files (incl. dotfiles, excl .git)' })
+  end
+end, { desc = 'Telescope find files (include dotfiles, ignore .git)' })
 map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, { desc = 'Telescope live grep' })
 
