@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml)
 
+CI includes a headless Neovim startup check to verify Neovim configuration doesn't error on startup.
+
 Dotfiles for macOS and Ubuntu/Debian, managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Managed Files

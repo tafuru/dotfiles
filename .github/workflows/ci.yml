@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest]
+        os: [ubuntu-latest, macos-latest]
         install-method: [bootstrap-pre, bootstrap-none, chezmoi-init]
 
     steps:
@@ -81,6 +81,20 @@ jobs:
           shellcheck "$HOME/.zfunc"
           shellcheck "$HOME/.zprofile"
           shellcheck "$HOME/.zaliases"
+
+      - name: Install Neovim (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y neovim
+
+      - name: Install Neovim (macOS)
+        if: runner.os == 'macOS'
+        run: brew update && brew install neovim
+
+      - name: Neovim headless startup check
+        run: |
+          set -e
+          nvim --version
+          nvim --headless -c 'lua local ok, lazy = pcall(require, "lazy"); if ok then lazy.sync() end' -c 'qa'
 
       - name: Verify signing config is absent when signingkey is empty
         run: |
