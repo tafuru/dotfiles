@@ -17,6 +17,6 @@ command -v pip3 &>/dev/null && alias pip=pip3
 
 # neovim
 if command -v nvim &>/dev/null; then
-  alias vi="nvim"
   alias vim="nvim"
+  alias vi="vim"
 fi
