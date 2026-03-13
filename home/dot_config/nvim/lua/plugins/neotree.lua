@@ -16,7 +16,7 @@ return {
           hide_gitignored = true,
           hide_by_name = { '.DS_Store' },
         },
-        follow_current_file = true,
+        follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
       },
       window = {
