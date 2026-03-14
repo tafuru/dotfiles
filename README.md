@@ -2,35 +2,17 @@
 
 [![CI](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/tafuru/dotfiles/actions/workflows/ci.yml)
 
-CI includes a headless Neovim startup check to verify Neovim configuration doesn't error on startup.
+Personal dotfiles for macOS and Ubuntu/Debian, managed with [chezmoi](https://www.chezmoi.io/). They provide the configuration layer for this setup, covering the shell, Git, terminal tools, runtimes, and a modular Neovim configuration.
 
-Dotfiles for macOS and Ubuntu/Debian, managed with [chezmoi](https://www.chezmoi.io/).
+## Quick Start
 
-## Managed Files
-
-| File | Description |
-|---|---|
-| `~/.zshrc` | zsh main config |
-| `~/.zshenv` | Environment variables (OS-specific template) |
-| `~/.zaliases` | Alias definitions |
-| `~/.zprofile` | Login shell config (Homebrew, etc.) |
-| `~/.gitconfig` | Git config (user- and OS-specific template) |
-| `~/.config/sheldon/plugins.toml` | sheldon plugin config |
-| `~/.config/starship.toml` | Starship prompt config (Gruvbox Rainbow) |
-| `~/.config/ghostty/config` | Ghostty terminal config |
-| `~/.config/zellij/config.kdl` | Zellij terminal multiplexer config |
-| `~/.config/mise/config.toml` | mise global tool config |
-| `~/.config/nvim/` | Neovim config (lazy.nvim + Gruvbox Dark, modular — see [Neovim](#neovim) section) |
-
-## Installation
-
-If chezmoi is already installed, the recommended way is:
+If `chezmoi` is already installed, the recommended way is:
 
 ```bash
 chezmoi init --apply github.com/tafuru/dotfiles
 ```
 
-If chezmoi is not installed, use `bootstrap.sh` — it installs chezmoi automatically:
+If `chezmoi` is not installed yet, use `bootstrap.sh`:
 
 ```bash
 git clone https://github.com/tafuru/dotfiles.git
@@ -38,71 +20,64 @@ cd dotfiles
 bash bootstrap.sh
 ```
 
-On first run, you will be prompted for:
+On first run, you will be prompted for your Git name and email address. You can also leave the SSH signing key empty to skip signing setup.
 
-- Git name / email
-- SSH signing key (optional — leave empty to skip)
-
-For non-interactive environments, use the `--yes` flag to auto-approve the chezmoi installation:
+For non-interactive environments, use:
 
 ```bash
 bash bootstrap.sh --yes
 ```
 
+For the full machine setup, including CLI tools, runtimes, and optional GUI apps, start with [dev-setup](https://github.com/tafuru/dev-setup).
+
+## When to Use This Repository
+
+- Use this repository when you want the configuration layer only.
+- Use [dev-setup](https://github.com/tafuru/dev-setup) when you want the full machine bootstrap.
+- Use [cmdtools](https://github.com/tafuru/cmdtools) and [devtools](https://github.com/tafuru/devtools) directly only when you want to manage those layers independently.
+
+## What It Manages
+
+| Area | What you get |
+|---|---|
+| Shell | `zsh` configuration, aliases, plugins via `sheldon`, and prompt integration |
+| Git and SSH | Git defaults managed with chezmoi templates plus optional 1Password-backed SSH agent and signing support |
+| Terminal tools | Configuration for Ghostty, Zellij, Starship, and related terminal workflow tools |
+| Runtimes | Global `mise` runtime definitions for tools such as Rust, Node.js, and Python |
+| Neovim | A modular Lua-based configuration with `lazy.nvim`, Gruvbox, Telescope, Neo-tree, Treesitter, LSP, formatting, and completion |
+
+Exact file layout lives in the repository. Maintainer-facing notes about templates, validation, and CI live in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Neovim Highlights
+
+Neovim is configured under `~/.config/nvim/` and split into `lua/config/` for core behavior and `lua/plugins/` for plugin specs.
+
+| Feature | Details |
+|---|---|
+| Theme | Gruvbox Dark |
+| Finder and navigation | Telescope on `<leader>ff` and `<leader>fg`, plus Neo-tree on `<leader>e` |
+| Editing experience | Treesitter, `mini.nvim`, `blink.cmp`, and `conform.nvim` |
+| Language support | `nvim-lspconfig` with Mason-managed language servers |
+
 ## Design Principles
 
-- Tools are skipped gracefully if not installed (`command -v` / `[ -f ]` / `[ -S ]` guards)
-- Works standalone — no dependency on [cmdtools](https://github.com/tafuru/cmdtools)
-- Supports both macOS and Ubuntu/Debian
-- `.zshenv` and `.gitconfig` use chezmoi templates for OS- and user-specific configuration
-- `~/.config/mise/config.toml` defines global runtimes (Rust, Node.js, Python); [dev-setup](https://github.com/tafuru/dev-setup) runs `mise install` automatically as the final step, or run it manually if applying dotfiles standalone
+- Works standalone and does not depend on [cmdtools](https://github.com/tafuru/cmdtools).
+- Supports both macOS and Ubuntu/Debian.
+- Uses chezmoi templates for OS-specific and user-specific values.
+- Skips optional integrations gracefully when the underlying tool is not installed.
+- Defines runtimes in `~/.config/mise/config.toml`; [dev-setup](https://github.com/tafuru/dev-setup) runs `mise install` automatically, or you can run it manually after applying the dotfiles.
 
-## Neovim
+## Related Repositories
 
-Config is modular under `~/.config/nvim/`:
-
-```
-nvim/
-├── init.lua              # entrypoint
-└── lua/
-    ├── config/
-    │   ├── options.lua   # editor options
-    │   ├── keymaps.lua   # key mappings
-    │   └── lazy.lua      # lazy.nvim bootstrap
-    └── plugins/          # one file per plugin
-```
-
-Plugins (managed by [lazy.nvim](https://github.com/folke/lazy.nvim)):
-
-| Plugin | Purpose |
+| Repository | Responsibility |
 |---|---|
-| ellisonleao/gruvbox.nvim | Gruvbox Dark colorscheme |
-| folke/which-key.nvim | Keymap hints popup |
-| folke/todo-comments.nvim | Highlight TODO/FIXME comments |
-| nvim-telescope/telescope.nvim | Fuzzy finder (`<leader>ff`, `<leader>fg`) |
-| nvim-neo-tree/neo-tree.nvim | File explorer sidebar (`<leader>e` to toggle) |
-| nvim-treesitter/nvim-treesitter | Syntax highlight & text objects |
-| neovim/nvim-lspconfig + mason | LSP client + server auto-install |
-| Saghen/blink.cmp | Completion engine |
-| stevearc/conform.nvim | Formatter integration |
-| lewis6991/gitsigns.nvim | Git diff in signcolumn |
-| echasnovski/mini.nvim | pairs / surround / comment |
+| [dev-setup](https://github.com/tafuru/dev-setup) | Full machine setup and orchestration |
+| [cmdtools](https://github.com/tafuru/cmdtools) | CLI tool installation |
+| [devtools](https://github.com/tafuru/devtools) | Optional GUI apps and fonts |
 
+## Contributing
 
-
-### 1Password SSH Agent
-
-SSH connections and Git commit signing can be managed via 1Password.
-
-1. Enable **Settings → Developer → Use the SSH agent** in 1Password
-2. Run `bootstrap.sh` — `SSH_AUTH_SOCK` will be configured automatically
-
-> If 1Password is not installed, `SSH_AUTH_SOCK` is left unchanged — SSH agent forwarding from a remote machine continues to work as expected.
-
-## Related
-
-- [dev-setup](https://github.com/tafuru/dev-setup) — Full machine setup (entry point)
-- [devtools](https://github.com/tafuru/devtools) — GUI apps and fonts
+README stays focused on user-facing setup and behavior. For CI details, validation commands, and repository conventions, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
